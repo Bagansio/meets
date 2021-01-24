@@ -5,18 +5,18 @@ function ini_server()
     const fs = require('fs');
     const path = require('path');
     const url = require('url');
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 8000;
 
 
     let data = JSON.parse(fs.readFileSync('data.json'));
 
-    const server = http.createServer((req, res) => {
+    var server = http.createServer((req, res) => {
         let filePath = path.join(
             __dirname,
-            "public",
+            "../public/html",
             req.url === "/" ? "index.html" : req.url
         );
-
+        console.log(req.ip);
         let extName = path.extname(filePath);
         let contentType = 'text/html';
 
@@ -42,7 +42,6 @@ function ini_server()
         console.log(`Content-Type: ${contentType}`)
 
         res.writeHead(200, {'Content-Type': contentType});
-
         const readStream = fs.createReadStream(filePath);
         readStream.pipe(res);
     });

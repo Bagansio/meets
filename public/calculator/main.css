@@ -1,0 +1,71 @@
+.container{
+    border: 10px solid rgb(7, 33, 47) !important;
+}
+
+
+.section
+{
+    
+    height: 100%;
+}
+/*
+.frm
+{
+    background-color: #3CBC8D;
+    color: white;
+}
+*/
+
+input[type=text] {
+    background-color: #02041b;
+    color: white; 
+  }
+
+.btn-number
+{
+    background-color:rgb(10, 28, 63) !important;
+    color: white !important;   
+    transition-duration: 0.2s;
+}
+
+.btn-number:hover
+{
+    background-color: rgb(14, 38, 87) !important;
+}
+
+.btn-number:active
+{
+    background-color: rgb(39, 95, 192) !important; 
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.num-cont
+{
+    background-color: rgb(10, 28, 63);
+}
+
+.op-cont
+{
+    background-color: rgb(7, 11, 31);
+}
+
+.btn-op
+{
+    background-color: rgb(7, 11, 31);
+    color: white !important;
+    transition-duration: 0.2s;
+}
+
+.btn-op:hover
+{
+    background-color: rgb(20, 30, 78);
+}
+
+.btn-op:active
+{
+    background-color: rgb(34, 50, 134);
+}
