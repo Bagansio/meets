@@ -1,32 +1,12 @@
 const express = require('express');
 const passport = require('passport');
 const path = require('path');
-const mysql = require("mysql");
-const dotenv = require('dotenv');
 const cookieSession = require('cookie-session')
 const bodyParser = require('body-parser')
-require('./passport-setup');
-
+require('./modules/passport-setup');
+require('./modules/db');
 const app = express();
 
-//dotenv is for config no -> need json
-dotenv.config({path: './.env'});
-
-//MY DB 
-const db = mysql.createConnection({
-    host: process.env.db_host,
-    user: process.env.db_user,
-    password: process.env.db_password,
-    database: process.env.db_connection
-});
-//MY DB CONNECTION
-db.connect( (error) => {
-    if(error) {
-        console.log(error)
-    } else{
-        console.log(`MYSQL Connected to ${data.db.connection}`)
-    }
-});
 // settings
 app.set('port',8000);
 app.set('view engine','ejs');                   //we set ejs to 'compile' ours html
@@ -49,7 +29,8 @@ app.use(passport.session());
 
 //routes
 app.use(require('./routes/index'));
-
+app.use(require('./routes/notes'));
+app.use(require('./routes/user'));
 // static files
 
 

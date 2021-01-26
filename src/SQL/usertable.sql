@@ -17,6 +17,8 @@ DROP TABLE if exists users;
 CREATE TABLE users(
 	id int,
     displayName varchar(50) not null,
+    role enum('admin','user') not null,
+    last_login datetime not null,
     picture varchar(512),
     email nvarchar(320),
     constraint users_pk primary key (id)

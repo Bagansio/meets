@@ -1,9 +1,9 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const fs = require('fs');
+const dotenv = require('dotenv');
 
-let data = JSON.parse(fs.readFileSync('data.json'));
-
+//dotenv is for config no -> need json
+dotenv.config({path: './.env'});
 
 passport.serializeUser(function(user,done)
 {
@@ -27,8 +27,8 @@ passport.deserializeUser(function(user/*id*/,done)
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
-    clientID: data["google-login"]["clientID"],
-    clientSecret: data["google-login"]["clientSecret"],
+    clientID: process.env.Google_clientID,
+    clientSecret: process.env.Google_clientSecret, 
     callbackURL: "http://localhost:8000/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
