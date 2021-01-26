@@ -1,18 +1,22 @@
 const express = require('express');
 const path = require('path');
 const mysql = require("mysql");
+const dotenv = require('dotenv');
+
 const app = express();
-const fs = require('fs');
 
-let data = JSON.parse(fs.readFileSync('data.json'));
 
+//dotenv is for config no -> need json
+dotenv.config({path: './.env'});
+
+//MY DB 
 const db = mysql.createConnection({
-    host: data.db.host,
-    user: data.db.user,
-    password: data.db.password,
-    database: data.db.connection
+    host: process.env.db_host,
+    user: process.env.db_user,
+    password: process.env.db_password,
+    database: process.env.db_connection
 });
-
+//MY DB CONNECTION
 db.connect( (error) => {
     if(error) {
         console.log(error)
