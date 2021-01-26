@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const dotenv = require('dotenv');
-
+const db = require('./db');
 //dotenv is for config no -> need json
 dotenv.config({path: './.env'});
 
@@ -38,9 +38,12 @@ passport.use(new GoogleStrategy({
        });
        needed but right now i have not a db
        */
-      console.log(accessToken);
-      console.log(refreshToken);
-      console.log(profile);
+       db.findOrCreate(profile);
        return done(null,profile);
+      //console.log(accessToken);
+     // console.log(refreshToken);
+      //console.log(profile);
+      //console.log(Date());
+       //return done(null,profile);
   }
 ));
