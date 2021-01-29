@@ -15,7 +15,11 @@ const isLoggedIn = (req,res,next) => {
 
 router.get('/',(req,res) =>
 {
-    res.render('index.html');
+    if(req.user)
+    {
+        res.render('index.html',{logged: true});
+    }
+    else res.render('index.html', {logged: false});
 })
 
 router.get('/schedule',isLoggedIn,(req,res) =>

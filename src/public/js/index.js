@@ -1,4 +1,4 @@
-let logged = false;
+let logged = <%= title%>;
 
 $(document).ready(function(){
     if(logged) 
