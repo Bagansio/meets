@@ -23,17 +23,19 @@ db.connect( (error) => {
 
 function let_user(result)
 {
-    return {
+    let user = {
         id: result.id,
         username: result.DisplayName,
         role: 'user',
         pictureUrl : result.PictureUrl,
         email : result.Email
     }
+    return user;
 }
 
+
 //if exists the user doesn't add in the db and add in the db if not
-function findOrCreate (user){
+function findOrCreateUser(user,done){
     
     db.query(`SELECT * FROM users u WHERE ${user.id} = u.id`,function(err,result)
     {
@@ -45,13 +47,17 @@ function findOrCreate (user){
             {
                 if(err) throw err;
                 console.log("ADDED THIS USER")
+                done(null,let_user(result[0]));
             });
         }
         else 
         {
             console.log("ALREADY EXISTS");
+            let usr = let_user(result[0]);
+            console.log(usr)
+            done(null,usr);
         }
     });
 }
 
-exports.findOrCreate = findOrCreate;
+exports.findOrCreateUser = findOrCreateUser;
