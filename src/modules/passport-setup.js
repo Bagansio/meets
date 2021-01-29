@@ -33,13 +33,20 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
       // use the profile info(mainly profile id) to check if the user is registered in our db
-      /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
-         return done(err, user);
-       });
-       needed but right now i have not a db
-       */
-       db.findOrCreate(profile);
-       return done(null,profile);
+
+
+      //this is for use more easy and shorter info about use 
+      //it should be correct in a future, now i'm exhaust with that :(
+      const user = {
+        id: profile.id,
+        username: profile.displayName,
+        role: 'user',
+        pictureUrl : profile.photos[0].value,
+        email : profile.emails[0].value
+      }
+      //this function if exists the user doesn't add in the db and add in the db if not
+      db.findOrCreate(profile);
+       return done(null,user);
       //console.log(accessToken);
      // console.log(refreshToken);
       //console.log(profile);

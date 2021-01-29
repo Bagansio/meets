@@ -19,7 +19,7 @@ router.get('/failed',(req,res) =>
 
 router.get('/good',isLoggedIn,(req,res) =>
 {
-    res.send(`WELCOME MR ${req.user.emails[0].value}!`);
+    res.send(`WELCOME MR ${req.user.username}!`); //user.emails[0].value}!`);
 })
 
 

@@ -21,7 +21,7 @@ router.get('/',(req,res) =>
 router.get('/schedule',isLoggedIn,(req,res) =>
 {
 
-    res.render('schedule.html', {title: 'Schedule'});
+    res.render('schedule.html', {title: req.user.username});
 })
 
 module.exports = router;

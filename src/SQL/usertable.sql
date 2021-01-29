@@ -15,13 +15,13 @@ use meets;
 DROP TABLE if exists users;
 
 CREATE TABLE users(
-	AccountId varchar(50),
+	id varchar(50),
     DisplayName varchar(50) not null,
     role enum('admin','user') not null,
     -- last_login datetime not null,
     PictureUrl varchar(512),
     Email nvarchar(320),
-    constraint users_pk primary key (AccountId)
+    constraint users_pk primary key (id)
 );
 
 COMMIT;
