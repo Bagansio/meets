@@ -17,10 +17,6 @@ router.get('/failed',(req,res) =>
     res.send("YOU FAILED TO LOG IN");
 })
 
-router.get('/good',isLoggedIn,(req,res) =>
-{
-    res.send(`WELCOME MR ${req.user.username}!`); //user.emails[0].value}!`);
-})
 
 
 router.get('/logout',(req,res) => {
@@ -44,7 +40,7 @@ router.get('/google',passport.authenticate('google', { scope: ['profile','email'
 //   which, in this example, will redirect the user to the home page.
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }), //if it fails it redirect to /failed
 function(req, res) {
-res.redirect('/');
+res.redirect('/user');
 });
 
 module.exports = router;

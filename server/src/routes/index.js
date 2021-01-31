@@ -17,18 +17,24 @@ const isLoggedIn = (req,res,next) => {
 function logged(req)
 {
     if(req.user) return true;
-    return false;
+    else return false;
 }
 
 router.get('/',(req,res) =>
 {
-    res.render('index.html',{logged: logged(req)});
+    res.render('index.html',{logged: logged(req), user: req.user});
 })
 
 router.get('/schedule',isLoggedIn,(req,res) =>
 {
 
-    res.render('schedule.html', {user: req.user , logged: logged(req)});
+    res.render('schedule.html', {logged: logged(req), user: req.user});
+})
+
+router.get('/user',isLoggedIn,(req,res) =>
+{
+
+    res.render('user.html', {logged: logged(req), user: req.user});
 })
 
 module.exports = router;

@@ -1,17 +1,27 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-        <a class="navbar-brand" href="/">MEETS & SCHEDULE</a>
-        </div>
-        <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="schedule">Schedule</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-        <li id ="user"></li>
-        <li id ="logout"></li>
-        </ul>
-    </div>
-</nav>
-<script>var logged = <%= logged%>; </script>
+<nav class="navbar navbar-expand-sm bg-custom navbar-dark ">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="/">
+        MEETS & SCHEDULE<!--<img src="bird.jpg" alt="logo" style="width:40px;"> -->
+    </a>
+    
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item" id="schedule-link">
+        <a class="nav-link" href="schedule">Schedule</a>
+      </li>
+    </ul>
+
+     <!-- User Links -->
+     <ul class="navbar-nav ml-auto">
+        <li class="nav-item" id ="user"></li>
+        <li class="nav-item" id ="logout"></li>
+    </ul>
+  </nav>
+<script type="text/javascript">var logged = <%= logged %>; </script>
+<script type="text/javascript">
+<% if(typeof user != "undefined" && user) {  %>
+    var  user_picture_url = "<%= user.pictureUrl %>";
+<%} %>
+</script>
 <script src='js/navbar.js'></script>
+<link rel="stylesheet" href="css/navbar.css">
