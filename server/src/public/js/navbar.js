@@ -19,7 +19,7 @@ function active_user()
     if(logged) 
     {
         console.log(user_picture_url);
-        $("#user").html('<a class="nav-link" href="/user"><span><img  src="'+ user_picture_url + '" class="rounded-circle img-user"></img></span> User</a>');
+        $("#user").html('<a class="nav-link" href="/user"><span><img  src="'+ user_picture_url + '" class="rounded-circle img-user"></img></span> Profile</a>');
         // $("#user").html("<a class=\"nav-link\" href=\"/user\"><span class=\"fa fa-user fa-lg\"></span> User</a>");
         $("#logout").html("<a class=\"nav-link\" href=\"/logout\"><span class=\"fa fa-sign-out fa-lg\"></span> Sign Out</a>");
     }

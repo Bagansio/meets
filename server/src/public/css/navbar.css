@@ -1,12 +1,15 @@
 body{
     background-attachment: fixed;
     
-    background-image: linear-gradient(to bottom, #3b444d, #414f5d, #465b6d, #4a677d, #4d748e, #5d829c, #6d91ab, #7da0ba, #9cb5ca, #bbcbda, #d9e2eb, #f7f9fb);
+    /*background-image: linear-gradient(to bottom, #3b444d, #414f5d, #465b6d, #4a677d, #4d748e, #5d829c, #6d91ab, #7da0ba, #9cb5ca, #bbcbda, #d9e2eb, #f7f9fb);
+    */
 
+    background-color: #393e46;
 }
 
+
 .bg-custom {
-    background-color: #3b444d;
+    background-color: #222831;/* #3b444d;*/
 }
 
 .img-user{

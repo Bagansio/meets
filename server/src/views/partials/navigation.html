@@ -17,10 +17,11 @@
         <li class="nav-item" id ="logout"></li>
     </ul>
   </nav>
-<script type="text/javascript">var logged = <%= logged %>; </script>
 <script type="text/javascript">
+var logged = false; //default is false
 <% if(typeof user != "undefined" && user) {  %>
     var  user_picture_url = "<%= user.pictureUrl %>";
+    logged = true; //if user its defined it means that u are logged
 <%} %>
 </script>
 <script src='js/navbar.js'></script>
