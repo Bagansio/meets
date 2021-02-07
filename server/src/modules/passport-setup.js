@@ -23,7 +23,7 @@ passport.deserializeUser(function(user/*id*/,done)
 passport.use(new GoogleStrategy({
     clientID: process.env.Google_clientID,
     clientSecret: process.env.Google_clientSecret, 
-    callbackURL: "http://localhost:8000/google/callback"
+    callbackURL: ('http://' +process.env.domain +':8000/google/callback')
   },
   function(accessToken, refreshToken, profile, done) {
       // use the profile info(mainly profile id) to check if the user is registered in our db

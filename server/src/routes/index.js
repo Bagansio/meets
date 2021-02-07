@@ -31,4 +31,10 @@ router.get('/user',isLoggedIn,(req,res) =>
     res.render('user.html', {user: req.user});
 })
 
+
+router.get('/api/test',(req,res,next) => 
+{
+    res.send("API is ok ^^");
+})
+
 module.exports = router;
