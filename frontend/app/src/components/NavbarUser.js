@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Icon, Avatar, Row, Col, Grid } from 'rsuite';
-//import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
+import  { Redirect  } from 'react-router-dom'
 import './NavbarUser.css'
 
 //icons 
@@ -8,7 +8,9 @@ import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 
+
 const API = 'http://alexipv4.com:8000/api/';
+
 
 
 export default class NavbarUser extends Component {
@@ -17,7 +19,9 @@ export default class NavbarUser extends Component {
     state = {
         //activekey: null
     }
-
+    
+    
+    
     handleSelect = (eventKey) => {
         this.setState({
             
@@ -30,6 +34,12 @@ export default class NavbarUser extends Component {
             case "Sign Out":
                 this.LogOut();
                 break;
+            default:
+                console.log(eventKey);
+                return <Redirect to={('/'+eventKey)}/>
+                //this.props.history.push('/'+eventKey)
+                //this.props.history.push('/'+eventKey)
+
         }
         
         //window.location = url;
@@ -48,21 +58,25 @@ export default class NavbarUser extends Component {
     }
 
     UserLogged = () => {
-        return (<Nav pullRight onSelect={this.redirectTo} >
-                    <Nav.Item eventKey="Profile" className ="UserNav">
+        return (<Navbar.Body><Nav>
+                    <Nav.Item href="/Schedule">Schedule</Nav.Item>
+                    <Nav.Item href="/Subjects">Subjects</Nav.Item>
+                </Nav>
+                <Nav pullRight onSelect={this.redirectTo} >
+                    <Nav.Item eventKey="Profile" className ="UserNav" href="/profile">
                         <div>
                             <div className="divImg"><img className="UserImage" src={this.props.user.pictureUrl}/></div>
                             <div className="divTxt"><p className="TextNavbar">Profile</p></div>
                         </div>
                     </Nav.Item>
                     <Nav.Item eventKey="Sign Out">Sign Out</Nav.Item>
-                </Nav>)
+                </Nav></Navbar.Body>)
     }
 
     UserNotLogged = () => {
-        return (<Nav pullRight>
+        return (<Navbar.Body><Nav pullRight>
                     <Nav.Item href={('http://alexipv4.com:8000/google')}>Log In</Nav.Item>
-                </Nav>)
+                </Nav></Navbar.Body>)
     }
 
     UserInterface = () => {
@@ -74,22 +88,12 @@ export default class NavbarUser extends Component {
         return (
             <Navbar appearance="default" >
                 <Navbar.Header>
-                    <a href="#" className="navbar-brand logo">
-                    MEETS & SCHEDULE
+                    <a href="/" className="navbar-brand logo">
+                    <img  className="navLogo" src="/logo.png"/>
                     </a>
                 </Navbar.Header>
-                <Navbar.Body>
-                    <Nav >
-                    <Nav.Item eventKey="1" >
-                        Home
-                    </Nav.Item>
-                    <Nav.Item eventKey="2">News</Nav.Item>
-                    <Nav.Item eventKey="3">Products</Nav.Item>
-                    </Nav>
-                    <this.UserInterface/>
-                    
-                    
-                </Navbar.Body>
+                <this.UserInterface/>
+                
             </Navbar>
             
         )
@@ -98,7 +102,6 @@ export default class NavbarUser extends Component {
    
    
     render() {
-        
         //console.log(this.state.user)
         return (
             <div>

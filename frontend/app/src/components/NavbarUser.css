@@ -17,3 +17,12 @@
 .textNavbar{
     color: #a4a9b3 !important;
 }
+
+.navLogo{
+    position: relative;
+    top: 16px;
+}
+
+.navLink{
+    color: none im !important;
+}

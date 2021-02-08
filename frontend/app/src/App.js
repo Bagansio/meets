@@ -21,7 +21,7 @@ class App extends Component {
     //tasks: tasks
   }
 
-
+  
   setUserLogin = (logged) => {
     this.setState({logged: logged, user: []})
   }
@@ -49,13 +49,20 @@ class App extends Component {
   render() {
     return <div>
       <Router>
-        <Route> 
-          <NavbarUser 
-              logged={this.state.logged}
-              user={this.state.user}
-              setUserLogin={this.setUserLogin}
-          />
-        </Route>    
+        <NavbarUser 
+          logged={this.state.logged}
+          user={this.state.user}
+          setUserLogin={this.setUserLogin}
+        />
+        <Route exact path="/Schedule">
+          <h1>SCHEDULE</h1>
+        </Route>  
+        <Route exact path="/Subjects">
+          <h1>Subjects</h1>
+        </Route>  
+        <Route exact path="/Profile">
+          <h1>Profile</h1>
+        </Route>   
       </Router>
     </div>
   }
