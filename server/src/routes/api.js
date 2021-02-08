@@ -47,4 +47,9 @@ router.get('/api/user',(req,res,next) =>
     }
 })
 
+router.get('/api/logout',(req,res) => {
+    req.session = null;
+    req.logout();
+    res.send({logged: false});
+});
 module.exports = router;

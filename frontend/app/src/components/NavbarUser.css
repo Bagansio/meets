@@ -1,0 +1,19 @@
+.UserImage {
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+
+    top: -11px;
+    left: -2px;
+}
+
+.divImg{
+    float:left;
+}
+.divTxt{
+    float:left;
+}
+
+.textNavbar{
+    color: #a4a9b3 !important;
+}
