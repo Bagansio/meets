@@ -5,7 +5,7 @@ import axios from 'axios'
 
 // import default style
 import 'rsuite/dist/styles/rsuite-dark.css'; // or 'rsuite/dist/styles/rsuite-default.css'
-
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //Components
@@ -22,8 +22,8 @@ class App extends Component {
   }
 
 
-  setUserLogin(logged) {
-    this.setState({logged: logged})
+  setUserLogin = (logged) => {
+    this.setState({logged: logged, user: []})
   }
 
 
@@ -53,7 +53,7 @@ class App extends Component {
           <NavbarUser 
               logged={this.state.logged}
               user={this.state.user}
-              setUserLogin={this.state.setUserLogin}
+              setUserLogin={this.setUserLogin}
           />
         </Route>    
       </Router>

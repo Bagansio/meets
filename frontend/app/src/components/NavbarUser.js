@@ -1,47 +1,61 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Icon, Avatar, Row, Col, Grid } from 'rsuite';
+//import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import './NavbarUser.css'
 
 //icons 
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 
 const API = 'http://alexipv4.com:8000/api/';
 
-const FaSvgIcon = ({ faIcon, ...rest }) => {
-    const { width, height, svgPathData } = faIcon;
-    return (
-      <svg {...rest} viewBox={`0 0 ${width} ${height}`} width="2em" height="2em" fill="currentColor">
-        <path d={svgPathData}></path>
-      </svg>
-    );
-  };
 
 export default class NavbarUser extends Component {
 
-
+    
     state = {
+        //activekey: null
     }
 
-    
-    redirectTo = (url) => {
-        console.log(url);
+    handleSelect = (eventKey) => {
+        this.setState({
+            
+        });
+        console.log(this.state.activekey)
+    }
+
+    redirectTo = (eventKey) => {
+        switch(eventKey){
+            case "Sign Out":
+                this.LogOut();
+                break;
+        }
+        
         //window.location = url;
     }
 
     LogOut= () => {
-
+        axios
+            .get(API+'logout', { withCredentials: true })
+            .then((response) => 
+            {
+                
+                if(response.data.logged !== undefined)  this.props.setUserLogin(response.data.logged);
+                else console.log("ERROR LOGGING OUT");
+                
+            });
     }
 
     UserLogged = () => {
-        return (<Nav pullRight>
-                    <Nav.Item className ="UserNav">
+        return (<Nav pullRight onSelect={this.redirectTo} >
+                    <Nav.Item eventKey="Profile" className ="UserNav">
                         <div>
                             <div className="divImg"><img className="UserImage" src={this.props.user.pictureUrl}/></div>
                             <div className="divTxt"><p className="TextNavbar">Profile</p></div>
                         </div>
                     </Nav.Item>
-                    <Nav.Item onFocus={this.redirectTo("YOO")}>Sign Out</Nav.Item>
+                    <Nav.Item eventKey="Sign Out">Sign Out</Nav.Item>
                 </Nav>)
     }
 
@@ -84,7 +98,7 @@ export default class NavbarUser extends Component {
    
    
     render() {
-        console.log()
+        
         //console.log(this.state.user)
         return (
             <div>
