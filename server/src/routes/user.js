@@ -40,6 +40,8 @@ router.get('/google',passport.authenticate('google', { scope: ['profile','email'
 //   which, in this example, will redirect the user to the home page.
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }), //if it fails it redirect to /failed
 function(req, res) {
+console.log("\nLOGGED :" + req.user.id + "\n  | FROM: \n  --->   " + req.ip + "\n");
+console.log()
 res.redirect('/api/login');
 });
 

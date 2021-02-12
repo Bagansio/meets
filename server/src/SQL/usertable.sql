@@ -8,8 +8,8 @@ SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 START TRANSACTION;
 
 
-DROP DATABASE IF EXISTS meets;
-CREATE DATABASE  meets;
+-- DROP DATABASE IF EXISTS meets;
+-- CREATE DATABASE  meets;
 
 use meets;
 DROP TABLE if exists users;
@@ -22,6 +22,7 @@ CREATE TABLE users(
     PictureUrl varchar(512),
     Email nvarchar(320),
     constraint users_pk primary key (id)
+
 );
 
 COMMIT;

@@ -22,14 +22,8 @@ export default class NavbarUser extends Component {
     
     
     
-    handleSelect = (eventKey) => {
-        this.setState({
-            
-        });
-        console.log(this.state.activekey)
-    }
 
-    redirectTo = (eventKey) => {
+    handleSelect = (eventKey) => {
         switch(eventKey){
             case "Sign Out":
                 this.LogOut();
@@ -62,14 +56,14 @@ export default class NavbarUser extends Component {
                     <Nav.Item href="/Schedule">Schedule</Nav.Item>
                     <Nav.Item href="/Subjects">Subjects</Nav.Item>
                 </Nav>
-                <Nav pullRight onSelect={this.redirectTo} >
+                <Nav pullRight onSelect={this.handleSelect} >
                     <Nav.Item eventKey="Profile" className ="UserNav" href="/profile">
                         <div>
                             <div className="divImg"><img className="UserImage" src={this.props.user.pictureUrl}/></div>
                             <div className="divTxt"><p className="TextNavbar">Profile</p></div>
                         </div>
                     </Nav.Item>
-                    <Nav.Item eventKey="Sign Out">Sign Out</Nav.Item>
+                    <Nav.Item eventKey="Sign Out" href="/">Sign Out</Nav.Item>
                 </Nav></Navbar.Body>)
     }
 
@@ -80,6 +74,7 @@ export default class NavbarUser extends Component {
     }
 
     UserInterface = () => {
+        console.log("NAVBAR: ",this.props.logged)
         if(this.props.logged) return <this.UserLogged/>
         else return <this.UserNotLogged/>
     }

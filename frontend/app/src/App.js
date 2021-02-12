@@ -10,12 +10,15 @@ import 'rsuite/dist/styles/rsuite-dark.css'; // or 'rsuite/dist/styles/rsuite-de
 
 //Components
 import NavbarUser from './components/NavbarUser';
+import Profile from './components/Profile';
+import { faAlignLeft } from '@fortawesome/free-solid-svg-icons';
 
 const API = 'http://alexipv4.com:8000/api/';
 
 class App extends Component {
 
   state = {
+    isAuthenticating: true,
     logged: false,
     user: []
     //tasks: tasks
@@ -25,7 +28,6 @@ class App extends Component {
   setUserLogin = (logged) => {
     this.setState({logged: logged, user: []})
   }
-
 
 
   componentDidMount() {
@@ -41,30 +43,56 @@ class App extends Component {
                                user: response.data});
             }
             else console.log("NOT LOGGED");
+            this.setState({isAuthenticating: false})
             console.log(response);
         });
         
   }
 
+
+
+
+  checkLog = () => {
+    return this.state.logged;
+  }
+
+
+  changeUsername = (newUsername) => {
+    let newUser = this.state.user;
+    newUser.username = newUsername;
+    this.setState({user: newUser})
+  }
+
   render() {
-    return <div>
-      <Router>
-        <NavbarUser 
-          logged={this.state.logged}
-          user={this.state.user}
-          setUserLogin={this.setUserLogin}
-        />
-        <Route exact path="/Schedule">
-          <h1>SCHEDULE</h1>
-        </Route>  
-        <Route exact path="/Subjects">
-          <h1>Subjects</h1>
-        </Route>  
-        <Route exact path="/Profile">
-          <h1>Profile</h1>
-        </Route>   
-      </Router>
-    </div>
+    //first we see if we are authenticating for avoid bugs
+    if(this.state.isAuthenticating) return null;
+
+    
+    console.log(this.state.user);
+    return (
+      <div>
+        <Router>
+          <NavbarUser 
+            logged={this.state.logged}
+            user={this.state.user}
+            setUserLogin={this.setUserLogin}
+          />
+          <Route exact path="/Schedule">
+            <h1>SCHEDULE</h1>
+          </Route>  
+          <Route exact path="/Subjects">
+            <h1>Subjects</h1>
+          </Route>  
+          <Route exact path="/Profile">
+            <Profile
+                logged={this.state.logged}
+                user={this.state.user}
+                changeUsername={this.changeUsername}
+            />
+          </Route>   
+        </Router>
+      </div>
+    )
   }
 }
 
